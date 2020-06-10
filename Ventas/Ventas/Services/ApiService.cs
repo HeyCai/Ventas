@@ -5,9 +5,10 @@
     using System.Net.Http;
     using System.Threading.Tasks;
     using Common.Models;
+    using Helpers;
     using Newtonsoft.Json;
     using Plugin.Connectivity;
-
+    
     public class ApiService
     {
         public async Task<Response> CheckConnection()
@@ -17,8 +18,7 @@
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Please Turn On Your Internet Settings",
-                    //Message = Languages.TurnOnInternet,
+                    Message = Languages.TurnOnInternet,
                 };
             }
 
@@ -28,8 +28,7 @@
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "No Internet Connection",
-                    //Message = Languages.NoInternet,
+                    Message = Languages.NoInternet,
                 };
             }
 

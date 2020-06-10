@@ -1,14 +1,13 @@
 ﻿namespace Ventas.ViewModels
 {
-    using Common.Models;
-    using System.Collections.ObjectModel;
-    using Services;
-    using System;
-    using System.Text;
-    using Xamarin.Forms;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Windows.Input;
+    using Common.Models;
     using GalaSoft.MvvmLight.Command;
+    using Helpers;
+    using Services;
+    using Xamarin.Forms;
 
     public class ProductsViewModel : BaseViewModel
     {
@@ -45,7 +44,7 @@
             if (!connection.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
                 return;
             }
 
@@ -56,7 +55,7 @@
             if (!response.IsSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error",response.Message,"Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             var list = (List<Product>)response.Result;
