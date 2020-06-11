@@ -26,6 +26,21 @@
         [Display(Name = "Publish On")]
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImagePath))
+                {
+                    return "noproduct";
+                }
+
+                return $"https://ventasbackend20200606181838.azurewebsites.net/{this.ImagePath.Substring(1)}";
+            }
+
+        }
+
         public override string ToString()
         {
             return this.Description;
