@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Product
     {
@@ -27,6 +28,9 @@
         [DataType(DataType.Date)]
         public DateTime PublishOn { get; set; }
 
+        [NotMapped]
+        public byte[] ImageArray { get; set; }
+
         public string ImageFullPath
         {
             get
@@ -36,7 +40,7 @@
                     return "noproduct";
                 }
 
-                return $"https://ventasbackend20200606181838.azurewebsites.net/{this.ImagePath.Substring(1)}";
+                return $"https://ventasapi.azurewebsites.net/{this.ImagePath.Substring(1)}";
             }
 
         }

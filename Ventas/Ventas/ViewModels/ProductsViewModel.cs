@@ -1,4 +1,4 @@
-﻿namespace Ventas.ViewModels
+﻿  namespace Ventas.ViewModels
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -11,13 +11,17 @@
 
     public class ProductsViewModel : BaseViewModel
     {
+
+        #region Attributes
         private ApiService apiService;
 
         private bool isRefreshing;
 
+        #endregion
+        #region Properties
         private ObservableCollection<Product> products;
 
-        public ObservableCollection<Product> Products 
+        public ObservableCollection<Product> Products
         {
             get { return this.products; }
             set { this.SetValue(ref this.products, value); }
@@ -29,13 +33,28 @@
             set { this.SetValue(ref this.isRefreshing, value); }
         }
 
+        #endregion
 
+
+        #region Contructors
         public ProductsViewModel()
         {
+            instance = this; 
             this.apiService = new ApiService();
             this.LoadProducts();
         }
+        #endregion
 
+        #region Singleton
+        private static ProductsViewModel instance;
+
+        public static ProductsViewModel GetInstance()
+        {
+            return instance;
+        }
+        #endregion
+
+        #region Methods
         private async void LoadProducts()
         {
             this.IsRefreshing = true;
@@ -62,13 +81,16 @@
             this.Products = new ObservableCollection<Product>(list);
             this.IsRefreshing = false;
         }
+        #endregion
 
+        #region Commands
         public ICommand RefreshCommand
         {
             get
             {
                 return new RelayCommand(LoadProducts);
             }
-        }
+        } 
+        #endregion
     }
 }
