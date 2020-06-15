@@ -14,7 +14,7 @@
         #region Properties
         //public CategoriesViewModel Categories { get; set; }
 
-        //public EditProductViewModel EditProduct { get; set; }
+        public EditProductViewModel EditProduct { get; set; }
 
         public ProductsViewModel Products { get; set; }
 
@@ -66,7 +66,7 @@
         #region Constructors
         public MainViewModel()
         {
-            //instance = this;
+            instance = this;
             //this.LoadMenu();
             this.Products = new ProductsViewModel();
         }

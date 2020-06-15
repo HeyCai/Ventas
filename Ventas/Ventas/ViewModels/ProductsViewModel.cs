@@ -1,7 +1,9 @@
 ﻿  namespace Ventas.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Windows.Input;
     using Common.Models;
     using GalaSoft.MvvmLight.Command;
@@ -13,15 +15,18 @@
     {
 
         #region Attributes
+        public List<Product> MyProducts { get; set; }
+
         private ApiService apiService;
 
         private bool isRefreshing;
 
-        #endregion
-        #region Properties
-        private ObservableCollection<Product> products;
+        private ObservableCollection<ProductItemViewModel> products;
 
-        public ObservableCollection<Product> Products
+        #endregion
+
+        #region Properties
+        public ObservableCollection<ProductItemViewModel> Products
         {
             get { return this.products; }
             set { this.SetValue(ref this.products, value); }
@@ -77,9 +82,29 @@
                 await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
-            var list = (List<Product>)response.Result;
-            this.Products = new ObservableCollection<Product>(list);
+            
+            
+            this.MyProducts = (List<Product>)response.Result;
             this.IsRefreshing = false;
+        }
+
+        public void RefreshList()
+        {
+            this.RefreshList();
+            var myListProductItemViewModel = MyProducts.Select(p => new ProductItemViewModel
+            {
+                Description = p.Description,
+                ImageArray = p.ImageArray,
+                ImagePath = p.ImagePath,
+                IsAvailable = p.IsAvailable,
+                Price = p.Price,
+                ProductId = p.ProductId,
+                PublishOn = p.PublishOn,
+                Remarks = p.Remarks,
+            });
+
+            this.Products = new ObservableCollection<ProductItemViewModel>(
+                myListProductItemViewModel.OrderBy(p => p.Description));
         }
         #endregion
 
