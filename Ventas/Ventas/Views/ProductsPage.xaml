@@ -14,13 +14,19 @@
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Products}"
                      Padding="5">
+            <SearchBar
+                BackgroundColor="Transparent"
+                HeightRequest="40"
+                Placeholder="{i18n:Translate Search}"
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding Filter}">
+            </SearchBar>
             <ListView 
                 HasUnevenRows="True"
                 IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True"
                 ItemsSource="{Binding Products}"
                 RefreshCommand="{Binding RefreshCommand}"  >
-
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
