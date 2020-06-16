@@ -20,11 +20,11 @@
 
         public AddProductViewModel AddProduct { get; set; }
 
-        //public LoginViewModel Login { get; set; }
+        public LoginViewModel Login { get; set; }
 
         //public RegisterViewModel Register { get; set; }
 
-        //public ObservableCollection<MenuItemViewModel> Menu { get; set; }
+        public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
         //public MyUserASP UserASP { get; set; }
 
@@ -67,8 +67,7 @@
         public MainViewModel()
         {
             instance = this;
-            //this.LoadMenu();
-            this.Products = new ProductsViewModel();
+            this.LoadMenu();
         }
         #endregion
 
@@ -87,31 +86,31 @@
         #endregion
 
         #region Methods
-        //private void LoadMenu()
-        //{
-        //    this.Menu = new ObservableCollection<MenuItemViewModel>();
+        private void LoadMenu()
+        {
+            this.Menu = new ObservableCollection<MenuItemViewModel>();
 
-        //    this.Menu.Add(new MenuItemViewModel
-        //    {
-        //        Icon = "ic_info",
-        //        PageName = "AboutPage",
-        //        Title = Languages.About,
-        //    });
+            this.Menu.Add(new MenuItemViewModel
+            {
+                Icon = "ic_info",
+                PageName = "AboutPage",
+                Title = Languages.About,
+            });
 
-        //    this.Menu.Add(new MenuItemViewModel
-        //    {
-        //        Icon = "ic_phonelink_setup",
-        //        PageName = "SetupPage",
-        //        Title = Languages.Setup,
-        //    });
+            this.Menu.Add(new MenuItemViewModel
+            {
+                Icon = "ic_phonelink_setup",
+                PageName = "SetupPage",
+                Title = Languages.Setup,
+            });
 
-        //    this.Menu.Add(new MenuItemViewModel
-        //    {
-        //        Icon = "ic_exit_to_app",
-        //        PageName = "LoginPage",
-        //        Title = Languages.Exit,
-        //    });
-        //}
+            this.Menu.Add(new MenuItemViewModel
+            {
+                Icon = "ic_exit_to_app",
+                PageName = "LoginPage",
+                Title = Languages.Exit,
+            });
+        }
 
         //public void RegisterDevice()
         //{
@@ -132,8 +131,7 @@
         private async void GoToAddProduct()
         {
             this.AddProduct = new AddProductViewModel();
-            //await App.Navigator.PushAsync(new AddProductPage());
-            await Application.Current.MainPage.Navigation.PushAsync(new AddProductPage());
+            await App.Navigator.PushAsync(new AddProductPage());
         }
 
         #endregion
