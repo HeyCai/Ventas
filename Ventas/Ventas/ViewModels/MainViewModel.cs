@@ -22,45 +22,45 @@
 
         public LoginViewModel Login { get; set; }
 
-        //public RegisterViewModel Register { get; set; }
+        public RegisterViewModel Register { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
-        //public MyUserASP UserASP { get; set; }
+        public MyUserASP UserASP { get; set; }
 
-        //public string UserFullName
-        //{
-        //    get
-        //    {
-        //        if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 1)
-        //        {
-        //            return $"{this.UserASP.Claims[0].ClaimValue} {this.UserASP.Claims[1].ClaimValue}";
-        //        }
+        public string UserFullName
+        {
+            get
+            {
+                if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 1)
+                {
+                    return $"{this.UserASP.Claims[0].ClaimValue} {this.UserASP.Claims[1].ClaimValue}";
+                }
 
-        //        return null;
-        //    }
-        //}
+                return null;
+            }
+        }
 
-        //public string UserImageFullPath
-        //{
-        //    get
-        //    {
-        //        foreach (var claim in this.UserASP.Claims)
-        //        {
-        //            if (claim.ClaimType == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/uri")
-        //            {
-        //                if (claim.ClaimValue.StartsWith("~"))
-        //                {
-        //                    return $"https://salesapiservices.azurewebsites.net{claim.ClaimValue.Substring(1)}";
-        //                }
+        public string UserImageFullPath
+        {
+            get
+            {
+                foreach (var claim in this.UserASP.Claims)
+                {
+                    if (claim.ClaimType == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/uri")
+                    {
+                        if (claim.ClaimValue.StartsWith("~"))
+                        {
+                            return $"https://ventasapi.azurewebsites.net{claim.ClaimValue.Substring(1)}";
+                        }
 
-        //                return claim.ClaimValue;
-        //            }
-        //        }
+                        return claim.ClaimValue;
+                    }
+                }
 
-        //        return null;
-        //    }
-        //}
+                return null;
+            }
+        }
         #endregion
 
         #region Constructors

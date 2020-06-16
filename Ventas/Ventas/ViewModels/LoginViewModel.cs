@@ -50,19 +50,19 @@
         #endregion
 
         #region Commands
-        //public ICommand RegisterCommand
-        //{
-        //    get
-        //    {
-        //        return new RelayCommand(Register);
-        //    }
-        //}
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        }
 
-        //private async void Register()
-        //{
-        //    MainViewModel.GetInstance().Register = new RegisterViewModel();
-        //    await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
-        //}
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+        }
 
         public ICommand LoginCommand
         {
