@@ -1,6 +1,6 @@
 ﻿namespace Ventas.Interfaces
 {
-    interface IPathService
+    public interface IPathService
     {
         string GetDatabasePath();
 
