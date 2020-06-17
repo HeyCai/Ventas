@@ -7,7 +7,7 @@ namespace Ventas.Droid.Implementations
     using Android.App;
     using Common.Models;
     using Newtonsoft.Json;
-    using Sales.Services;
+    using Services;
     using System;
     using System.Threading.Tasks;
     using Xamarin.Auth;
