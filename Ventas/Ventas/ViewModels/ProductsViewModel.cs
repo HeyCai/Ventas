@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using Common.Models;
     using GalaSoft.MvvmLight.Command;
@@ -13,9 +14,7 @@
 
     public class ProductsViewModel : BaseViewModel
     {
-
         #region Attributes
-
         private string filter;
 
         private ApiService apiService;
@@ -26,6 +25,7 @@
 
         private ObservableCollection<ProductItemViewModel> products;
 
+        private Category category;
         #endregion
 
         #region Properties
@@ -38,6 +38,7 @@
                 this.RefreshList();
             }
         }
+
         public List<Product> MyProducts { get; set; }
 
         public ObservableCollection<ProductItemViewModel> Products
@@ -52,13 +53,18 @@
             set { this.SetValue(ref this.isRefreshing, value); }
         }
 
+        public Category Category
+        {
+            get { return this.category; }
+            set { this.SetValue(ref this.category, value); }
+        }
         #endregion
 
-
-        #region Contructors
-        public ProductsViewModel()
+        #region Constructors
+        public ProductsViewModel(Category category)
         {
-            instance = this; 
+            instance = this;
+            this.Category = category;
             this.apiService = new ApiService();
             this.dataService = new DataService();
             this.LoadProducts();
@@ -112,8 +118,7 @@
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.GetList<Product>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
-            //var response = await this.apiService.GetList<Product>(url, prefix, controller, this.Category.CategoryId, Settings.TokenType, Settings.AccessToken);
+            var response = await this.apiService.GetList<Product>(url, prefix, controller, this.Category.CategoryId, Settings.TokenType, Settings.AccessToken);
             if (!response.IsSuccess)
             {
                 return false;
@@ -137,8 +142,8 @@
                     ProductId = p.ProductId,
                     PublishOn = p.PublishOn,
                     Remarks = p.Remarks,
-                    //CategoryId = p.CategoryId,
-                    //UserId = p.UserId,
+                    CategoryId = p.CategoryId,
+                    UserId = p.UserId,
                 });
 
                 this.Products = new ObservableCollection<ProductItemViewModel>(
@@ -156,13 +161,12 @@
                     ProductId = p.ProductId,
                     PublishOn = p.PublishOn,
                     Remarks = p.Remarks,
-                    //CategoryId = p.CategoryId,
-                    //UserId = p.UserId,
+                    CategoryId = p.CategoryId,
+                    UserId = p.UserId,
                 }).Where(p => p.Description.ToLower().Contains(this.Filter.ToLower())).ToList();
 
                 this.Products = new ObservableCollection<ProductItemViewModel>(
                     myListProductItemViewModel.OrderBy(p => p.Description));
-            
             }
         }
         #endregion
@@ -175,13 +179,15 @@
                 return new RelayCommand(RefreshList);
             }
         }
+
         public ICommand RefreshCommand
         {
             get
             {
                 return new RelayCommand(LoadProducts);
             }
-        } 
+        }
         #endregion
     }
 }
+

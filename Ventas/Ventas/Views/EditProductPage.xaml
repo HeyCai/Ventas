@@ -32,7 +32,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Label
                         Grid.Column="0"
@@ -59,7 +61,7 @@
                         Text="{Binding Product.Price}"
                         Placeholder="{i18n:Translate PricePlaceholder}">
                     </Entry>
-                    <!--<Label
+                    <Label
                         Grid.Column="0"
                         Grid.Row="2"
                         Text="{i18n:Translate Category}"
@@ -72,7 +74,7 @@
                         ItemsSource="{Binding Categories}"
                         SelectedItem="{Binding Category}"
                         Title="{i18n:Translate CategoryPlaceholder}">
-                    </Picker>-->
+                    </Picker>
                     <Label
                         Grid.Column="0"
                         Grid.Row="3"

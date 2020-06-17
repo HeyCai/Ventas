@@ -12,7 +12,7 @@
     public class MainViewModel
     {
         #region Properties
-        //public CategoriesViewModel Categories { get; set; }
+        public CategoriesViewModel Categories { get; set; }
 
         public EditProductViewModel EditProduct { get; set; }
 

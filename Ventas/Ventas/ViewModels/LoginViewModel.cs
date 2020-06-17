@@ -130,7 +130,7 @@
                 Settings.UserASP = JsonConvert.SerializeObject(userASP);
             }
 
-            //MainViewModel.GetInstance().Categories = new CategoriesViewModel();
+            MainViewModel.GetInstance().Categories = new CategoriesViewModel();
             Application.Current.MainPage = new MasterPage();
 
             this.IsRunning = false;

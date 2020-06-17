@@ -39,7 +39,7 @@ namespace Ventas
                     //mainViewModel.RegisterDevice();
                 }
 
-                //mainViewModel.Categories = new CategoriesViewModel();
+                mainViewModel.Categories = new CategoriesViewModel();
                 this.MainPage = new MasterPage();
             }
             else
@@ -84,7 +84,7 @@ namespace Ventas
                 Settings.UserASP = JsonConvert.SerializeObject(userASP);
             }
 
-            //MainViewModel.GetInstance().Categories = new CategoriesViewModel();
+            MainViewModel.GetInstance().Categories = new CategoriesViewModel();
             Application.Current.MainPage = new MasterPage();
         }
 

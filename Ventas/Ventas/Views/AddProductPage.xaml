@@ -10,8 +10,10 @@
              Title="{i18n:Translate AddProduct}">
 
     <ContentPage.Content>
-        <ScrollView BindingContext="{Binding AddProduct}" >
-            <StackLayout Padding="5">
+        <ScrollView
+            BindingContext="{Binding AddProduct}">
+            <StackLayout
+                Padding="5">
                 <Image
                     Source="{Binding ImageSource}">
                     <Image.GestureRecognizers>
@@ -31,40 +33,64 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-
-                    <Label 
-                        Grid.Column="0" Grid.Row="0"
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
                         Text="{i18n:Translate Description}"
-                        VerticalOptions="Center"></Label>
-                    <Entry 
-                        Grid.Column="1" Grid.Row="0"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="0"
                         Text="{Binding Description}"
-                        Placeholder="{i18n:Translate DescriptionPlaceholder}"></Entry>
-                    <Label                         
-                        Grid.Column="0" Grid.Row="1"
+                        Placeholder="{i18n:Translate DescriptionPlaceholder}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
                         Text="{i18n:Translate Price}"
-                        VerticalOptions="Center"></Label>
-                    <Entry 
-                        Grid.Column="1" Grid.Row="1"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Keyboard="Numeric"
                         Text="{Binding Price}"
-                        Keyboard="Numeric" Placeholder="{i18n:Translate PricePlaceholder}"></Entry>
-                    <Label 
-                        Grid.Column="0" Grid.Row="2"
+                        Placeholder="{i18n:Translate PricePlaceholder}">
+                    </Entry>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="{i18n:Translate Category}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Picker
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        ItemDisplayBinding="{Binding Description}"
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding Category}"
+                        Title="{i18n:Translate CategoryPlaceholder}">
+                    </Picker>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
                         Text="{i18n:Translate Remarks}"
-                        VerticalOptions="Center"></Label>
-                    <Editor 
-                        Grid.Column="1" Grid.Row="2"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Editor
+                        Grid.Column="1"
+                        Grid.Row="3"
                         Text="{Binding Remarks}"
                         VerticalOptions="FillAndExpand">
                     </Editor>
-
                 </Grid>
-                <ActivityIndicator 
+                <ActivityIndicator
                     IsRunning="{Binding IsRunning}"
                     VerticalOptions="CenterAndExpand">
-
                 </ActivityIndicator>
                 <Button
                     BackgroundColor="Navy"
@@ -75,7 +101,6 @@
                     Text="{i18n:Translate Save}"
                     TextColor="White">
                 </Button>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
