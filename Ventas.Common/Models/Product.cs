@@ -1,5 +1,6 @@
 ﻿namespace Ventas.Common.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +9,13 @@
     {
         [Key]
         public int ProductId { get; set; }
+
+        public int CategoryId { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        public string UserId { get; set; }
+
         [Required]
         [StringLength(50)]
         public string Description { get; set; }
@@ -44,6 +52,10 @@
             }
 
         }
+
+        [JsonIgnore]
+        public virtual Category Category { get; set; }
+
 
         public override string ToString()
         {
