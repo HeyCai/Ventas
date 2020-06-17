@@ -72,11 +72,20 @@
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Compat">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Auth">
+      <Version>1.6.0.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\Localize.cs" />
+    <Compile Include="Implementations\LoginFacebookPageRenderer.cs" />
+    <Compile Include="Implementations\LoginInstagramPageRenderer.cs" />
+    <Compile Include="Implementations\LoginTwitterPageRenderer.cs" />
     <Compile Include="Implementations\PathService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -110,6 +119,10 @@
     <AndroidResource Include="Resources\drawable\ic_action_add_circle.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Ventas.Common\Ventas.Common.csproj">
+      <Project>{3f26e5cc-ca9b-44ac-bb4f-3db8d1171d34}</Project>
+      <Name>Ventas.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ventas\Ventas.csproj">
       <Project>{C52F3177-1D34-436F-B7A9-1E7873A05918}</Project>
       <Name>Ventas</Name>

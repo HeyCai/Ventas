@@ -25,7 +25,7 @@ namespace Ventas
         {
             InitializeComponent();
 
-            //var mainViewModel = MainViewModel.GetInstance();
+            var mainViewModel = MainViewModel.GetInstance();
 
             MainViewModel.GetInstance().Login = new LoginViewModel();
             MainPage = new LoginPage();
@@ -36,7 +36,7 @@ namespace Ventas
                 if (!string.IsNullOrEmpty(Settings.UserASP))
                 {
                     mainViewModel.UserASP = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
-                    mainViewModel.RegisterDevice();
+                    //mainViewModel.RegisterDevice();
                 }
 
                 //mainViewModel.Categories = new CategoriesViewModel();
@@ -80,7 +80,7 @@ namespace Ventas
             {
                 var userASP = (MyUserASP)response.Result;
                 MainViewModel.GetInstance().UserASP = userASP;
-                MainViewModel.GetInstance().RegisterDevice();
+                //MainViewModel.GetInstance().RegisterDevice();
                 Settings.UserASP = JsonConvert.SerializeObject(userASP);
             }
 
